@@ -15,7 +15,7 @@ var chalk = require('chalk')
 var shell = require('shelljs')
 var getPkg = require('package')
 
-module.exports = function(options) {
+module.exports = function() {
   var prefix = shell.exec('npm config get prefix', {
     silent: true
   }).output.trim()
