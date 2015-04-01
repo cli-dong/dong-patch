@@ -1,0 +1,37 @@
+{
+  "name": "dong-patch",
+  "version": "0.0.0",
+  "description": "patch spm, update dependencies",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/crossjs/dong-patch.git"
+  },
+  "keywords": [
+    "web",
+    "spm",
+    "seajs",
+    "scaffolds"
+  ],
+  "author": {
+    "name": "crossjs",
+    "email": "liwenfu@crossjs.com"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/crossjs/dong-patch/blob/master/LICENSE-MIT"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/crossjs/dong-patch/issues"
+  },
+  "homepage": "https://github.com/crossjs/dong-patch",
+  "dependencies": {
+    "chalk": "^0.5.1",
+    "package": "^1.0.1",
+    "shelljs": "^0.3.0"
+  }
+}
