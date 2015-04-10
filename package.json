@@ -1,6 +1,6 @@
 {
   "name": "dong-patch",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "patch spm, update dependencies",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,10 +10,9 @@
     "url": "git://github.com/crossjs/dong-patch.git"
   },
   "keywords": [
-    "web",
+    "patch",
     "spm",
-    "seajs",
-    "scaffolds"
+    "dependencies"
   ],
   "author": {
     "name": "crossjs",

@@ -15,7 +15,7 @@ var chalk = require('chalk')
 var shell = require('shelljs')
 var getPkg = require('package')
 
-module.exports = function() {
+module.exports = function(options) {
   var prefix = shell.exec('npm config get prefix', {
     silent: true
   }).output.trim()
@@ -31,7 +31,7 @@ module.exports = function() {
       return console.error(chalk.red('`' + dest + '` 缺少 package.json 文件！'))
     }
 
-    if (pkg.dependencies.handlebars === '3.0.1') {
+    if (!options.force && pkg.dependencies.handlebars === '3.0.1') {
       return;
     }
 
@@ -44,6 +44,9 @@ module.exports = function() {
     if (dest.charAt(1) === ':') {
       install = dest.slice(0, 2) + ' && ' + install
     }
+
+    console.log(chalk.magenta('░▒▓██ waiting……'))
+    console.log('')
 
     shell.exec(install, {
       silent: true
