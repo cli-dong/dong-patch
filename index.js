@@ -20,6 +20,14 @@ module.exports = function(options) {
     silent: true
   }).output.trim()
 
+  if (prefix) {
+    if (prefix.indexOf(path.sep) === -1) {
+      prefix = ''
+    }
+  } else {
+    return log.error('patch', '请通过 `npm config set prefix` 正确设置 npm 目录')
+  }
+
   var dest = path.join(prefix,
     'node_modules', 'dong',
     'node_modules', 'dong-build',
@@ -38,13 +46,13 @@ module.exports = function(options) {
     log.info('patch', dest)
 
     if (!options.force && pkg.dependencies.handlebars === '3.0.1') {
-      log.info('patch', 'done!')
+      log.info('patch', 'skipped!')
       return;
     }
 
     pkg.dependencies.handlebars = '3.0.1'
 
-    fs.writeFileSync(path.join(dest, 'package.json'), JSON.stringify(pkg));
+    fs.writeFileSync(path.join(dest, 'package.json'), JSON.stringify(pkg, null, 2));
 
     var install = 'cd ' + dest + ' && npm install'
 
