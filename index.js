@@ -16,19 +16,26 @@ var log = require('spm-log')
 var shell = require('shelljs')
 
 module.exports = function(options) {
+  // POST INSTALL
+  if (options.type === 'install') {
+    log.info('patch', 'waiting for dependencies installed')
+
+    return setImmediate(function() {
+      shell.exec('dong patch', {
+        silent: false
+      })
+    })
+  }
+
   var prefix = shell.exec('npm config get prefix', {
     silent: true
   }).output.trim()
 
-  log.info('patch', 'prefix is', prefix)
-
-  if (prefix) {
-    if (prefix.indexOf(path.sep) === -1) {
-      prefix = ''
-    }
-  } else {
+  if (!prefix) {
     return log.error('patch', '请通过 `npm config set prefix` 正确设置 npm 目录')
   }
+
+  log.info('patch', 'prefix is', prefix)
 
   var dest = path.join(prefix,
     'node_modules', 'dong',
