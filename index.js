@@ -20,11 +20,11 @@ module.exports = function(options) {
   if (options.type === 'install') {
     log.info('patch', 'waiting for dependencies installed')
 
-    return setImmediate(function() {
+    return setTimeout(function() {
       shell.exec('dong patch', {
         silent: false
       })
-    })
+    }, 80)
   }
 
   var prefix = shell.exec('npm config get prefix', {
