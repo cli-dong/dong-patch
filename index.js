@@ -11,16 +11,20 @@
 var fs = require('fs')
 var path = require('path')
 
-var chalk = require('chalk')
-var shell = require('shelljs')
 var getPkg = require('package')
+var log = require('spm-log')
+var shell = require('shelljs')
 
 module.exports = function(options) {
   var prefix = shell.exec('npm config get prefix', {
     silent: true
   }).output.trim()
 
-  var nodeModules = path.join(prefix, 'node_modules', 'spm', 'node_modules')
+  var dest = path.join(prefix,
+    'node_modules', 'dong',
+    'node_modules', 'dong-build',
+    'node_modules', 'spm-sea',
+    'node_modules', 'gulp-spm')
 
   function updateAndInstall(dest) {
     var pkg
@@ -28,7 +32,7 @@ module.exports = function(options) {
     try {
       pkg = getPkg(dest)
     } catch(e) {
-      return console.error(chalk.red('`' + dest + '` 缺少 package.json 文件！'))
+      return log.error('patch', '`' + dest + '` 缺少 package.json 文件！')
     }
 
     if (!options.force && pkg.dependencies.handlebars === '3.0.1') {
@@ -45,21 +49,17 @@ module.exports = function(options) {
       install = dest.slice(0, 2) + ' && ' + install
     }
 
-    console.log(chalk.magenta('░▒▓██ waiting……'))
-    console.log('')
+    log.info('patch', 'waiting...')
 
     shell.exec(install, {
-      silent: true
+      silent: false
     })
   }
 
-  if (fs.existsSync(nodeModules)) {
-    // serve-spm
-    updateAndInstall(path.join(nodeModules, 'serve-spm'))
-    // spm-build\node_modules\gulp-spm
-    updateAndInstall(path.join(nodeModules, 'spm-build', 'node_modules', 'gulp-spm'))
+  if (fs.existsSync(dest)) {
+    updateAndInstall(dest)
   } else {
-    console.error('请先执行 `$ npm install -g spm` 安装 SPM！')
+    log.error('patch', '请执行 `$ npm install -g dong` 更新 DONG！')
   }
 
 }

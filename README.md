@@ -2,7 +2,7 @@
 
 [![NPM version](https://img.shields.io/npm/v/dong-patch.svg?style=flat-square)](https://npmjs.org/package/dong-patch)
 
-> patch spm, update dependencies
+> patch dong, update dependencies
 
 ## Usage
 

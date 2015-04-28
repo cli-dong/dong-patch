@@ -1,6 +1,6 @@
 {
   "name": "dong-patch",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "patch spm, update dependencies",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -29,8 +29,8 @@
   },
   "homepage": "https://github.com/crossjs/dong-patch",
   "dependencies": {
-    "chalk": "^0.5.1",
     "package": "^1.0.1",
-    "shelljs": "^0.3.0"
+    "shelljs": "^0.3.0",
+    "spm-log": "^0.1.2"
   }
 }
