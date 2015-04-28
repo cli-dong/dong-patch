@@ -20,6 +20,8 @@ module.exports = function(options) {
     silent: true
   }).output.trim()
 
+  log.info('patch', 'prefix is', prefix)
+
   if (prefix) {
     if (prefix.indexOf(path.sep) === -1) {
       prefix = ''
