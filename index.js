@@ -16,17 +16,6 @@ var log = require('spm-log')
 var shell = require('shelljs')
 
 module.exports = function(options) {
-  // POST INSTALL
-  if (options.type === 'install') {
-    log.info('patch', 'waiting for dependencies installed')
-
-    return setTimeout(function() {
-      shell.exec('dong patch', {
-        silent: false
-      })
-    }, 80)
-  }
-
   var prefix = shell.exec('npm config get prefix', {
     silent: true
   }).output.trim()
@@ -55,7 +44,7 @@ module.exports = function(options) {
     log.info('patch', dest)
 
     if (!options.force && pkg.dependencies.handlebars === '3.0.1') {
-      log.info('patch', 'skipped!')
+      log.info('patch', 'already patched! skip now.')
       return;
     }
 
