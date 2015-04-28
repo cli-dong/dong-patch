@@ -35,7 +35,10 @@ module.exports = function(options) {
       return log.error('patch', '`' + dest + '` 缺少 package.json 文件！')
     }
 
+    log.info('patch', dest)
+
     if (!options.force && pkg.dependencies.handlebars === '3.0.1') {
+      log.info('patch', 'done!')
       return;
     }
 
@@ -49,11 +52,11 @@ module.exports = function(options) {
       install = dest.slice(0, 2) + ' && ' + install
     }
 
-    log.info('patch', 'waiting...')
-
     shell.exec(install, {
       silent: false
     })
+
+    log.info('patch', 'done!')
   }
 
   if (fs.existsSync(dest)) {
