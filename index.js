@@ -26,11 +26,12 @@ module.exports = function(options) {
 
   log.info('patch', 'prefix is', prefix)
 
-  var dest = path.join(prefix,
-    'node_modules', 'dong',
-    'node_modules', 'dong-build',
+  var dest = path.join(__dirname,
+    '..', 'dong-build',
     'node_modules', 'spm-sea',
     'node_modules', 'gulp-spm')
+
+  log.info('patch', 'destination is', dest)
 
   function updateAndInstall(dest) {
     var pkg
