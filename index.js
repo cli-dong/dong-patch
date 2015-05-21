@@ -33,7 +33,7 @@ module.exports = function(options) {
 
   log.info('patch', 'destination is', dest)
 
-  var npmInstall = 'npm install'
+  var npmInstall = 'npm install handlebars@3.0.1 --save'
 
   if (options.registry) {
     npmInstall += ' --registry' + options.registry
@@ -54,10 +54,6 @@ module.exports = function(options) {
       log.info('patch', 'already patched! skip now.')
       return;
     }
-
-    pkg.dependencies.handlebars = '3.0.1'
-
-    fs.writeFileSync(path.join(dest, 'package.json'), JSON.stringify(pkg, null, 2));
 
     var install = ['cd ' + dest, npmInstall]
 
