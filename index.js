@@ -33,6 +33,12 @@ module.exports = function(options) {
 
   log.info('patch', 'destination is', dest)
 
+  var npmInstall = 'npm install'
+
+  if (options.registry) {
+    npmInstall += ' --registry' + options.registry
+  }
+
   function updateAndInstall(dest) {
     var pkg
 
@@ -53,13 +59,13 @@ module.exports = function(options) {
 
     fs.writeFileSync(path.join(dest, 'package.json'), JSON.stringify(pkg, null, 2));
 
-    var install = 'cd ' + dest + ' && npm install'
+    var install = ['cd ' + dest, npmInstall]
 
     if (dest.charAt(1) === ':') {
-      install = dest.slice(0, 2) + ' && ' + install
+      install.unshift(dest.slice(0, 2))
     }
 
-    shell.exec(install, {
+    shell.exec(install.join(' && '), {
       silent: false
     })
 

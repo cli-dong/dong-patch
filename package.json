@@ -1,6 +1,6 @@
 {
   "name": "dong-patch",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "patch spm, update dependencies",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
