@@ -33,7 +33,7 @@ module.exports = function(options) {
 
   log.info('patch', 'destination is', dest)
 
-  var npmInstall = 'npm install handlebars@3.0.1 --save'
+  var npmInstall = 'npm install handlebars@3.0.1 --save --save-exact'
 
   if (options.registry) {
     npmInstall += ' --registry' + options.registry
