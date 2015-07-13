@@ -18,8 +18,13 @@ module.exports = {
     optional: true,
     defaults: ''
   }, {
+    name: 'sudo',
+    alias: 'S',
+    description: '需要 su 权限（unix）',
+    defaults: false
+  }, {
     name: 'force',
-    alias: 'f',
+    alias: 'F',
     description: '强制重新打补丁',
     defaults: false
   }],
